@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Legend — GTA 6 Trophy Guide &amp; Tracker</title>
+<meta name="description" content="Offline guide and tracker for all 55 GTA 6 trophies on PlayStation 5: checklist, roadmap to platinum, missable flags, and a cited guide for every trophy.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">VI</div>
+    <div>
+      <h1>Leonida Legend</h1>
+      <p class="subtitle">GTA 6 Trophy Guide &amp; Tracker — PlayStation 5 · 55 trophies · offline</p>
+    </div>
+  </div>
+  <div class="progress-block" id="progress-block">
+    <div class="progress-numbers"><span id="earned-count">0</span><span class="of">/ 55 earned</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-meta"><span id="progress-pct">0% to platinum</span><span id="progress-est">≈ 200 h to platinum · 4/10 · 1 playthrough</span></div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Guide sections">
+  <button class="tab active" data-view="checklist" role="tab" aria-selected="true">Checklist</button>
+  <button class="tab" data-view="roadmap" role="tab" aria-selected="false">Roadmap to Platinum</button>
+  <button class="tab" data-view="missable" role="tab" aria-selected="false">Missable <span class="tab-badge" id="missable-badge">1</span></button>
+  <button class="tab" data-view="about" role="tab" aria-selected="false">About &amp; Sources</button>
+</nav>
+
+<section class="toolbar" id="toolbar">
+  <input id="search" type="search" placeholder="Search a trophy or mission…" aria-label="Search trophies">
+  <select id="grade-filter" aria-label="Filter by grade">
+    <option value="">All grades</option>
+    <option value="platinum">Platinum</option>
+    <option value="gold">Gold</option>
+    <option value="silver">Silver</option>
+    <option value="bronze">Bronze</option>
+  </select>
+  <select id="kind-filter" aria-label="Filter by kind">
+    <option value="">All kinds</option>
+    <option value="story">Story</option>
+    <option value="side">Side missions</option>
+    <option value="collectible">Collectibles</option>
+    <option value="activity">Activities</option>
+    <option value="combat">Combat</option>
+    <option value="completion">100% completion</option>
+    <option value="misc">Misc / world</option>
+    <option value="platinum">Platinum</option>
+  </select>
+  <label class="check"><input type="checkbox" id="missable-only"> Missable only</label>
+  <label class="check"><input type="checkbox" id="unearned-only"> Unearned only</label>
+  <label class="check spoiler-check"><input type="checkbox" id="spoiler-toggle"> Spoiler-safe: hide story trophies</label>
+  <div class="toolbar-actions">
+    <button id="export-btn" type="button">Export progress</button>
+    <button id="import-btn" type="button">Import progress</button>
+    <input type="file" id="import-file" accept=".json,application/json" hidden>
+    <button id="reset-btn" type="button" class="danger">Reset</button>
+  </div>
+</section>
+
+<main class="layout">
+  <section class="list-pane">
+    <div id="view-checklist" class="view active">
+      <p class="list-meta" id="list-meta"></p>
+      <ul class="trophy-list" id="trophy-list"></ul>
+    </div>
+
+    <div id="view-roadmap" class="view">
+      <h2>Roadmap to the platinum</h2>
+      <p class="view-intro">Built from the official trophy descriptions. Five stages, in order — about 200 hours, difficulty 4/10, one playthrough, no online trophies. Sources: PowerPyx trophy guide &amp; roadmap; Exophase official list.</p>
+      <ol class="roadmap" id="roadmap"></ol>
+    </div>
+
+    <div id="view-missable" class="view">
+      <h2>Missable trophies</h2>
+      <p class="view-intro">Only one trophy in the whole list can be missed. Everything else is either story-unmissable or doable in free roam after the credits — there is no mission replay, so the one missable step matters.</p>
+      <div id="missable-list"></div>
+      <h3>Safe by design</h3>
+      <ul class="safe-list">
+        <li><strong>All story trophies</strong> (chapters, missions, finale) — unmissable, they pop on completion.</li>
+        <li><strong>All collectibles &amp; activities</strong> — free roam continues after the story, so nothing is locked out.</li>
+        <li><strong>No online trophies</strong> — all 55 are single-player and offline.</li>
+      </ul>
+    </div>
+
+    <div id="view-about" class="view">
+      <h2>About this guide</h2>
+      <p>Leonida Legend is an offline, open-source guide and tracker for the 55 PlayStation 5 trophies of Grand Theft Auto VI (1 platinum, 2 gold, 6 silver, 46 bronze; 28 hidden). It runs entirely from its own files — no network, no account, no ads.</p>
+      <h3>How the guides are written</h3>
+      <p>Every guide is written in our own words for this entry, from the official trophy descriptions. Where a guide gives a specific location, count or step, it names its source beside it — PowerPyx's trophy guide &amp; roadmap, the Exophase trophy list, and PSNProfiles for PSN's counts. Where the early guides have not yet pinned a detail down, the guide says so plainly instead of inventing it.</p>
+      <h3>Sources</h3>
+      <ul class="source-list">
+        <li><a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/">PowerPyx — GTA 6 Trophy Guide &amp; Roadmap</a> (difficulty 4/10, ~200 h, missable flag, roadmap steps)</li>
+        <li><a href="https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/">Exophase — GTA VI trophy list</a> (official names, descriptions, grades)</li>
+        <li><a href="https://psnprofiles.com/trophies/43531-grand-theft-auto-vi">PSNProfiles — GTA VI trophies</a> (grades and PSN progress counts)</li>
+      </ul>
+      <h3>Your progress</h3>
+      <p>Progress is saved in this browser only (localStorage). Export downloads a JSON file; Import restores it. Nothing leaves your machine.</p>
+      <p class="fineprint">Unofficial fan guide. Grand Theft Auto and GTA are trademarks of Rockstar Games / Take-Two Interactive. No official artwork, logo or screenshot is used here; the look is our own.</p>
+    </div>
+  </section>
+
+  <aside class="detail-pane" id="detail-pane" aria-live="polite">
+    <div class="detail-empty" id="detail-empty">
+      <h2>Pick a trophy</h2>
+      <p>Select any trophy from the checklist to see its official description, its guide, the steps, and the sources behind every fact.</p>
+      <p class="detail-tip">Tip: turn on <strong>Spoiler-safe</strong> to hide story trophies until you earn them.</p>
+    </div>
+    <article class="detail" id="detail" hidden>
+      <div class="detail-head">
+        <span class="grade-chip" id="detail-grade"></span>
+        <span class="kind-chip" id="detail-kind"></span>
+        <span class="missable-flag" id="detail-missable" hidden>⚠ MISSABLE</span>
+      </div>
+      <h2 id="detail-name"></h2>
+      <p class="official"><span class="label">Official description</span><span id="detail-desc"></span></p>
+      <p class="estimate" id="detail-estimate"></p>
+      <label class="earned-toggle"><input type="checkbox" id="detail-earned"> Mark as earned</label>
+      <h3>Guide</h3>
+      <p id="detail-guide"></p>
+      <h3>Steps</h3>
+      <ol id="detail-steps"></ol>
+      <h3>Sources</h3>
+      <ul class="detail-sources" id="detail-sources"></ul>
+      <p class="detail-note">Guide text is our own words. Sources are named beside each guide so you can check every fact.</p>
+    </article>
+  </aside>
+</main>
+
+<footer class="footer">
+  <span>Leonida Legend — unofficial fan guide · 55 trophies · works offline · progress stays in your browser</span>
+  <span id="footer-counts"></span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
