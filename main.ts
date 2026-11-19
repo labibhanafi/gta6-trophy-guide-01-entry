@@ -11,7 +11,8 @@ const repoRoot = dirname(fileURLToPath(import.meta.url));
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 
 // The grader mounts MAKEFUN_OUTPUT_DIR as a volume: removing the mount
-// point itself fails with EPERM. Empty its contents instead, never the dir.
+// point itself fails with EPERM. Empty its contents instead —
+// never the directory itself, and never rmSync(outDir) in any form.
 mkdirSync(outDir, { recursive: true });
 for (const entry of readdirSync(outDir)) {
   rmSync(join(outDir, entry), { recursive: true, force: true });
