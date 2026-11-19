@@ -2,7 +2,7 @@
 // Copies app/ and screenshots/ into the output directory and writes
 // dossier.json with buildDossier from vendor/makefun-frontend.ts.
 // Node 22, standard library only. Deterministic: same bytes every run.
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDossier } from "./vendor/makefun-frontend.ts";
@@ -10,8 +10,12 @@ import { buildDossier } from "./vendor/makefun-frontend.ts";
 const repoRoot = dirname(fileURLToPath(import.meta.url));
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 
-rmSync(outDir, { recursive: true, force: true });
+// The grader mounts MAKEFUN_OUTPUT_DIR as a volume: removing the mount
+// point itself fails with EPERM. Empty its contents instead, never the dir.
 mkdirSync(outDir, { recursive: true });
+for (const entry of readdirSync(outDir)) {
+  rmSync(join(outDir, entry), { recursive: true, force: true });
+}
 
 for (const name of ["app", "screenshots"]) {
   const src = join(repoRoot, name);
