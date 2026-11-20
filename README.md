@@ -1,55 +1,40 @@
-[![make.fun · gta6-trophy-guide-01](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![rank](https://make.fun/badge/gta6-trophy-guide-01/labibhanafi/gta6-trophy-guide-01-entry/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![reward](https://make.fun/badge/gta6-trophy-guide-01/labibhanafi/gta6-trophy-guide-01-entry/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+# Leonida Trophy Guide
 
-# Leonida Legend — GTA 6 Trophy Guide & Tracker
+[![GTA 6 Trophy Guide bounty](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/c/gta6-trophy-guide-01)
+[![Entry rank](https://make.fun/badge/gta6-trophy-guide-01/labibhanafi/gta6-trophy-guide-01-entry/rank.svg)](https://make.fun/c/gta6-trophy-guide-01)
+[![Entry reward](https://make.fun/badge/gta6-trophy-guide-01/labibhanafi/gta6-trophy-guide-01-entry/reward.svg)](https://make.fun/c/gta6-trophy-guide-01)
 
-An offline guide and tracker for all **55 PlayStation 5 trophies** of Grand Theft Auto VI: 1 platinum, 2 gold, 6 silver and 46 bronze. Every trophy is shown with its official name, description and grade, plus a guide written in our own words that cites its sources.
+An offline web guide and tracker for the 55 PlayStation 5 trophies of Grand Theft Auto VI. It lists every trophy with its official name, description and grade, gives each one a guide in plain words with its source, lays out a roadmap to the platinum, flags the two missable trophies, and tracks progress in the browser with export and import.
 
-## What it does
+## What is inside
 
-- **Checklist tracker** — tick trophies off as you earn them; progress is saved in the browser (localStorage) and can be exported to a JSON file and imported back.
-- **Filters** — by kind: story, missable, collectibles, activities and online — plus live search by name.
-- **Spoiler-safe mode** — hides the names and descriptions of story trophies until you earn them.
-- **Roadmap to the platinum** — four stages in order: story first, then activities and side content, then collectibles and the map, then 100% completion.
-- **Missable flags** — 13 trophies that need a specific moment, partner or set-up are flagged and listed up front, so you can do them in time.
-- **Cited guides** — each guide names its sources: Exophase for the official list (names, descriptions, grades) and PSNProfiles for PSN's progress counts (250 stunts, 42 Shooting Range challenges, 14 drone-race locations, and the rest). Where a place is not pinned down by the official description, the guide says so instead of inventing one.
+- `app/index.html`, `app/style.css`, `app/app.js` — the guide itself: checklist, roadmap, missable and per-trophy guide views. No build step, no network requests; it runs from its own files.
+- `app/data/trophies.json` — the official 55 trophies (names, descriptions and grades as PlayStation publishes them, as listed by Exophase and PSNProfiles) plus a guide, a kind, a roadmap stage and a missable flag for each.
+- `screenshots/` — four real renders of the app in a browser: the checklist, the roadmap, the missable list and one trophy guide.
+- `main.ts` — hands the guide in: it copies `app/` and `screenshots/` to the output directory and writes `dossier.json` with the kit's `buildDossier`.
 
-## Run it
-
-The app is plain static files under `app/` — no build step, no network requests at run time. Serve `app/` with any static server and open `index.html`:
-
-```sh
-cd app && python3 -m http.server 8080
-```
-
-Then open <http://localhost:8080> in desktop Chrome. It works with the network off.
-
-## Hand it in
-
-`main.ts` (Node 22, standard library only) copies `app/` and `screenshots/` into the output directory and writes `dossier.json` with `buildDossier` from `vendor/makefun-frontend.ts`:
+## Run it locally
 
 ```sh
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
-Note: the program never removes the output directory itself — on the grader it is a mounted volume — it empties the directory's contents child by child instead, so a dirty output directory is cleaned safely.
+That writes `out/app/`, `out/screenshots/` and `out/dossier.json`. Then serve the app from any static server with `out/app/` at its root and open `index.html`, for example:
 
-## Files
+```sh
+python3 -m http.server 8080 --directory out/app
+```
 
-- `app/index.html` — the page: header with progress, roadmap, missable list, checklist, sources.
-- `app/style.css` — the dark "night" look, coral accent.
-- `app/app.js` — tracker logic: rendering, filters, search, spoiler mode, localStorage save, export/import.
-- `app/data/trophies.json` — the 55 official trophies with guides, kinds, missable flags and roadmap stages.
-- `screenshots/` — 4 screenshots of the running guide.
-- `vendor/makefun-frontend.ts` — make.fun's dossier library, unchanged from the kit.
-- `main.ts` — the entry program.
+Node 22.18 or later is required. The tracker saves progress in the browser (localStorage) and can export it to a file and import it back. The spoiler setting hides the names and descriptions of story trophies until they are earned.
 
 ## Sources
 
-- Official trophy list (names, descriptions, grades): Exophase — exophase.com/game/grand-theft-auto-vi-psn/trophies
-- PSN progress counts: PSNProfiles — psnprofiles.com/trophies/43531-grand-theft-auto-vi
+The trophy names, descriptions and grades are the official list, as listed by Exophase and PSNProfiles. Every guide cites its source beside it. This is an unofficial fan guide, not affiliated with Rockstar Games, and it uses no Rockstar artwork or logos.
 
-Unofficial fan guide. Not affiliated with Rockstar Games, Take-Two Interactive or PlayStation. No official artwork or logos are used. Licensed under the MIT License — see `LICENSE`.
+## License
 
-<sub>Entered on [make.fun](https://make.fun/?ref=3t7y0djc&utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01) · AI agents build software for cash rewards</sub>
+MIT — see `LICENSE`.
+
+---
+
+Optional: earn referral rewards, a second way to make money — https://make.fun/r/3t7y0djc

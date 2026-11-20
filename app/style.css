@@ -1,314 +1,175 @@
-/* Leonida Legend — GTA 6 trophy guide & tracker. Dark "night" look, coral accent. */
-
 :root {
-  --bg: #0f1218;
-  --surface: #171c24;
-  --surface-soft: #1e242f;
-  --surface-raised: #232a37;
-  --text: #edeae4;
-  --muted: #9aa3b0;
-  --border: #2c3442;
-  --accent: #ff6b4a;
-  --accent-soft: rgba(255, 107, 74, 0.14);
-  --gold: #d4af5a;
-  --silver: #c3c9cf;
-  --bronze: #c98b5e;
-  --platinum: #d8e1ea;
-  --ok: #7bc98a;
-  --radius: 14px;
-  --radius-small: 6px;
+  --bg: #0d0b1e;
+  --panel: #17132e;
+  --panel2: #1f1840;
+  --line: #332a5e;
+  --text: #f2eefc;
+  --muted: #b3a8d8;
+  --pink: #ff2e88;
+  --cyan: #2ee6d6;
+  --gold: #f5b942;
+  --silver: #c9cede;
+  --bronze: #d08a4e;
+  --platinum: #7fe7f2;
+  --danger: #ff5d5d;
 }
-
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: 16px;
-  line-height: 1.55;
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.45;
 }
-
-h1, h2, h3 {
-  font-family: "Iowan Old Style", Palatino, Georgia, serif;
-  line-height: 1.2;
-  margin: 0;
-}
-
-h1 { font-size: 1.9rem; }
-h2 { font-size: 1.35rem; margin-bottom: 0.4rem; }
-h3 { font-size: 1.1rem; }
-
-p { margin: 0.4rem 0; }
-ul, ol { margin: 0.4rem 0; padding-left: 1.3rem; }
-
-/* ---- header ---- */
-
-.topbar {
+a { color: var(--cyan); }
+.top {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  align-items: flex-start;
+  gap: 24px;
+  align-items: flex-end;
   justify-content: space-between;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 1.4rem 1rem 0.6rem;
+  padding: 22px 28px 14px;
+  border-bottom: 3px solid var(--pink);
+  background: linear-gradient(120deg, #1a0f33, #0d0b1e 60%);
 }
-
-.brand { display: flex; gap: 0.9rem; align-items: flex-start; }
-
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  background: var(--accent);
-  color: #1a0d08;
-  font-family: "Iowan Old Style", Palatino, Georgia, serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  flex: none;
+.brand h1 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-shadow: 0 0 18px rgba(255, 46, 136, 0.55);
 }
-
-.subtitle { color: var(--muted); font-size: 0.92rem; margin-top: 0.2rem; }
-
-.progress-box {
-  min-width: 260px;
-  flex: 1 1 280px;
-  max-width: 380px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 0.9rem 1rem;
-}
-
-.progress-count { font-size: 1.05rem; }
-.progress-count strong { font-size: 1.5rem; color: var(--accent); }
-
-.progress-bar {
-  height: 10px;
-  margin-top: 0.5rem;
-  background: var(--surface-soft);
-  border-radius: 999px;
+.sub { margin: 6px 0 0; color: var(--muted); max-width: 640px; }
+.progress { min-width: 240px; }
+.bar {
+  height: 14px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #0a0817;
   overflow: hidden;
 }
-
-.progress-bar span {
-  display: block;
+.fill {
   height: 100%;
-  width: 0;
-  background: var(--accent);
-  border-radius: 999px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
   transition: width 0.25s ease;
 }
-
-.progress-note { color: var(--muted); font-size: 0.85rem; }
-
-/* ---- layout ---- */
-
-main {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0.6rem 1rem 1.5rem;
-  display: grid;
-  gap: 1.1rem;
-}
-
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.1rem 1.2rem;
-}
-
-.panel-intro { color: var(--muted); font-size: 0.95rem; }
-
-/* ---- roadmap ---- */
-
-.stages { list-style: none; padding: 0; display: grid; gap: 0.8rem; margin-top: 0.8rem; }
-.stages li {
-  background: var(--surface-soft);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius-small);
-  padding: 0.7rem 0.9rem;
-}
-.stages p { color: var(--muted); font-size: 0.95rem; }
-.stage-count { color: var(--text); font-weight: 600; }
-
-/* ---- missable ---- */
-
-.missable-list { list-style: none; padding: 0; display: grid; gap: 0.45rem; margin-top: 0.7rem; }
-.missable-list li {
+.counts { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+.tabs {
   display: flex;
-  gap: 0.6rem;
-  align-items: baseline;
-  background: var(--surface-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-small);
-  padding: 0.5rem 0.7rem;
-  font-size: 0.95rem;
+  gap: 6px;
+  padding: 10px 28px 0;
 }
-.missable-tag {
-  flex: none;
-  font-size: 0.72rem;
+.tabs a {
+  padding: 9px 18px;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+.tabs a.active { background: var(--panel2); color: var(--cyan); border-color: var(--cyan); }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 28px;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button, .tools button {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #0a0817;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+.filters button.on { background: var(--pink); border-color: var(--pink); color: #fff; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tools input[type="search"] {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #0a0817;
+  color: var(--text);
+  min-width: 200px;
+}
+.spoiler { color: var(--muted); font-size: 14px; display: flex; gap: 6px; align-items: center; }
+main { padding: 18px 28px 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.card.earned { border-color: var(--cyan); background: var(--panel2); }
+.card h3 { margin: 0 0 4px; font-size: 17px; }
+.card .desc { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
+.card .guide { margin: 8px 0 0; font-size: 14px; }
+.card .src { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #1a0d08;
-  background: var(--accent);
-  border-radius: 4px;
-  padding: 0.1rem 0.35rem;
+  margin-right: 6px;
 }
-.missable-list .trophy-name { font-weight: 600; }
-.missable-list .trophy-desc { color: var(--muted); }
-
-/* ---- controls ---- */
-
-.controls { display: grid; gap: 0.8rem; margin-top: 0.7rem; }
-
-.search-label { font-weight: 600; display: grid; gap: 0.3rem; }
-.search-label input {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border-radius: var(--radius-small);
-  border: 1px solid var(--border);
-  background: var(--surface-soft);
-  color: var(--text);
-  font: inherit;
-}
-
-.filters { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-
-.filter-btn {
-  font: inherit;
-  font-size: 0.9rem;
-  padding: 0.4rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface-soft);
-  color: var(--text);
-  cursor: pointer;
-}
-.filter-btn:hover { border-color: var(--accent); }
-.filter-btn.is-active { background: var(--accent); border-color: var(--accent); color: #1a0d08; font-weight: 700; }
-.filter-btn .count { opacity: 0.75; font-size: 0.85em; }
-
-.toggle-label { display: flex; gap: 0.5rem; align-items: center; font-size: 0.95rem; cursor: pointer; }
-.toggle-label input { width: 1.1rem; height: 1.1rem; accent-color: var(--accent); }
-
-.save-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.save-buttons button {
-  font: inherit;
-  font-size: 0.9rem;
-  padding: 0.45rem 0.8rem;
-  border-radius: var(--radius-small);
-  border: 1px solid var(--border);
-  background: var(--surface-raised);
-  color: var(--text);
-  cursor: pointer;
-}
-.save-buttons button:hover { border-color: var(--accent); }
-.save-note { color: var(--muted); font-size: 0.85rem; }
-
-.list-meta { color: var(--muted); font-size: 0.9rem; margin-top: 0.9rem; }
-.empty-note { color: var(--muted); }
-
-/* ---- trophy list ---- */
-
-.trophy-list { list-style: none; padding: 0; display: grid; gap: 0.7rem; margin-top: 0.6rem; }
-
-.trophy {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.2rem 0.8rem;
-  background: var(--surface-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-small);
-  padding: 0.8rem 0.9rem;
-}
-.trophy.is-earned { border-color: var(--ok); }
-.trophy.is-earned .trophy-name { text-decoration: none; }
-
-.trophy-check {
-  grid-row: span 3;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-top: 0.15rem;
-  accent-color: var(--accent);
-  cursor: pointer;
-}
-
-.trophy-head { display: flex; flex-wrap: wrap; gap: 0.4rem 0.6rem; align-items: baseline; }
-.trophy-name { font-weight: 700; font-size: 1.02rem; }
-.trophy-grade {
-  font-size: 0.72rem;
+.badge.platinum { background: var(--platinum); color: #062a2e; }
+.badge.gold { background: var(--gold); color: #3a2703; }
+.badge.silver { background: var(--silver); color: #22283a; }
+.badge.bronze { background: var(--bronze); color: #2e1a08; }
+.flag {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  border-radius: 4px;
-  padding: 0.12rem 0.4rem;
-  color: #141414;
+  background: var(--danger);
+  color: #fff;
+  margin-left: 6px;
 }
-.trophy-grade.platinum { background: var(--platinum); }
-.trophy-grade.gold { background: var(--gold); }
-.trophy-grade.silver { background: var(--silver); }
-.trophy-grade.bronze { background: var(--bronze); }
-
-.trophy-kind {
-  font-size: 0.75rem;
+.kind {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 12px;
+  border: 1px solid var(--line);
   color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 0.1rem 0.35rem;
-  text-transform: capitalize;
 }
-.trophy-missable {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #1a0d08;
-  background: var(--accent);
-  border-radius: 4px;
-  padding: 0.12rem 0.4rem;
+.check { display: flex; gap: 8px; align-items: baseline; margin-bottom: 6px; }
+.check input { width: 18px; height: 18px; accent-color: var(--cyan); }
+.stage { margin-bottom: 18px; }
+.stage h2 { margin: 0 0 4px; font-size: 20px; color: var(--cyan); }
+.stage p { margin: 0 0 10px; color: var(--muted); }
+.stage ol { margin: 0; padding-left: 22px; }
+.stage li { margin: 3px 0; }
+.warn {
+  border: 1px solid var(--danger);
+  background: #2a0f1e;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
 }
-.trophy-target {
-  font-size: 0.78rem;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 0.1rem 0.35rem;
-}
-
-.trophy-desc { color: var(--muted); font-size: 0.95rem; margin: 0.15rem 0; }
-.trophy-guide { font-size: 0.95rem; }
-.trophy-guide .guide-label { font-weight: 700; }
-.trophy-sources { color: var(--muted); font-size: 0.83rem; margin-top: 0.3rem; }
-.trophy-sources .source-label { font-weight: 700; color: var(--text); }
-.trophy-stage { color: var(--muted); font-size: 0.83rem; }
-
-.trophy.is-hidden-story .trophy-name,
-.trophy.is-hidden-story .trophy-desc { color: var(--muted); font-style: italic; }
-
-/* ---- sources & footer ---- */
-
-.sources li { margin-bottom: 0.35rem; font-size: 0.95rem; }
-.source-url { font-family: ui-monospace, monospace; font-size: 0.85em; word-break: break-all; }
-
+.warn h2 { margin: 0 0 6px; color: var(--danger); }
+.empty { color: var(--muted); padding: 24px 0; }
+.detail h2 { margin: 0 0 4px; font-size: 24px; }
+.detail .desc { color: var(--muted); }
+.detail .guide { font-size: 16px; max-width: 760px; }
+.detail .nav { margin-top: 18px; display: flex; gap: 12px; }
 footer {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 1rem 2rem;
+  padding: 16px 28px 26px;
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 13px;
+  border-top: 1px solid var(--line);
 }
-
-@media (max-width: 640px) {
-  h1 { font-size: 1.55rem; }
-  .trophy { grid-template-columns: auto 1fr; }
-  .progress-box { max-width: none; }
-}
+footer p { margin: 4px 0; max-width: 900px; }

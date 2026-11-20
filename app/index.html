@@ -3,98 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leonida Legend — GTA 6 Trophy Guide &amp; Tracker</title>
-<meta name="description" content="Offline guide and tracker for all 55 Grand Theft Auto VI trophies on PlayStation 5: official names, descriptions and grades, a roadmap to the platinum, missable flags, and cited guides.">
+<title>Leonida Trophy Guide — GTA VI</title>
 <link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
 </head>
 <body>
-<header class="topbar">
+<header class="top">
   <div class="brand">
-    <span class="brand-mark" aria-hidden="true">LL</span>
-    <div>
-      <h1>Leonida Legend</h1>
-      <p class="subtitle">GTA 6 trophy guide &amp; tracker — PlayStation 5 · 55 trophies · 1 platinum, 2 gold, 6 silver, 46 bronze</p>
-    </div>
+    <h1>Leonida Trophy Guide</h1>
+    <p class="sub">Grand Theft Auto VI — all 55 PlayStation 5 trophies, with a roadmap, missable flags and a tracker. Unofficial fan guide.</p>
   </div>
-  <div class="progress-box" id="progressBox">
-    <div class="progress-count"><strong id="earnedCount">0</strong><span> / 55 earned</span></div>
-    <div class="progress-bar" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
-    <p class="progress-note" id="progressNote">Tick a trophy off when you earn it. Progress is saved in this browser.</p>
+  <div class="progress" id="progressBox">
+    <div class="bar"><div class="fill" id="progressFill"></div></div>
+    <p class="counts" id="progressText">0 / 55 earned</p>
   </div>
 </header>
-
-<main>
-  <section class="panel roadmap" id="roadmapPanel" aria-labelledby="roadmapTitle">
-    <h2 id="roadmapTitle">Roadmap to the platinum</h2>
-    <p class="panel-intro">Built from the official trophy descriptions. Four stages, in order — story first, then the world, then the clean-up.</p>
-    <ol class="stages">
-      <li>
-        <h3>Stage 1 — Story first</h3>
-        <p>Play Chapters 1–4 and the final mission, plus the contact strands for Andy, Kenton, Billy, Randy and Tyrone. Every chapter and mission trophy here is unmissable. <span class="stage-count" id="stageCount1"></span></p>
-      </li>
-      <li>
-        <h3>Stage 2 — Activities &amp; side content</h3>
-        <p>Stranger strands, races, the Shooting Range, fishing, arcade games, challenges and the partner moments. Do the missable ones now — they are flagged below. <span class="stage-count" id="stageCount2"></span></p>
-      </li>
-      <li>
-        <h3>Stage 3 — Collectibles &amp; the map</h3>
-        <p>Card sets, WAiNK It spots, meditation spots, vehicles, all 52 areas, gang operations, garages and Scooter Bros registrations. Sweep region by region. <span class="stage-count" id="stageCount3"></span></p>
-      </li>
-      <li>
-        <h3>Stage 4 — 100% &amp; the platinum</h3>
-        <p>Finish the 100% completion checklist for <em>A Long Road</em>, then the platinum <em>Vice Got a Price!</em> pops on its own. <span class="stage-count" id="stageCount4"></span></p>
-      </li>
-    </ol>
-  </section>
-
-  <section class="panel missable" id="missablePanel" aria-labelledby="missableTitle">
-    <h2 id="missableTitle">Missable trophies — do these in time</h2>
-    <p class="panel-intro">These need a specific moment, partner or set-up. The rest of the list can be cleaned up after the story.</p>
-    <ul class="missable-list" id="missableList"></ul>
-  </section>
-
-  <section class="panel tracker" aria-labelledby="trackerTitle">
-    <h2 id="trackerTitle">Trophy checklist</h2>
-    <div class="controls">
-      <label class="search-label">Search <input type="search" id="searchInput" placeholder="Search a trophy name…" autocomplete="off"></label>
-      <div class="filters" role="group" aria-label="Filter trophies by kind">
-        <button type="button" class="filter-btn is-active" data-filter="all">All <span class="count" data-count-for="all"></span></button>
-        <button type="button" class="filter-btn" data-filter="story">Story <span class="count" data-count-for="story"></span></button>
-        <button type="button" class="filter-btn" data-filter="missable">Missable <span class="count" data-count-for="missable"></span></button>
-        <button type="button" class="filter-btn" data-filter="collectibles">Collectibles <span class="count" data-count-for="collectibles"></span></button>
-        <button type="button" class="filter-btn" data-filter="activities">Activities <span class="count" data-count-for="activities"></span></button>
-        <button type="button" class="filter-btn" data-filter="online">Online <span class="count" data-count-for="online"></span></button>
-      </div>
-      <label class="toggle-label"><input type="checkbox" id="spoilerToggle"> Spoiler-safe: hide story trophy names &amp; descriptions until earned</label>
-      <div class="save-buttons">
-        <button type="button" id="exportBtn">Export progress (.json)</button>
-        <button type="button" id="importBtn">Import progress</button>
-        <input type="file" id="importFile" accept="application/json,.json" hidden>
-        <button type="button" id="resetBtn">Reset all</button>
-      </div>
-      <p class="save-note" id="saveNote">Progress is stored in this browser (localStorage). Export a backup before clearing browser data.</p>
-    </div>
-    <p class="list-meta" id="listMeta"></p>
-    <ul class="trophy-list" id="trophyList"></ul>
-    <p class="empty-note" id="emptyNote" hidden>No trophies match this filter and search.</p>
-  </section>
-
-  <section class="panel sources" aria-labelledby="sourcesTitle">
-    <h2 id="sourcesTitle">Sources &amp; notes</h2>
-    <ul>
-      <li>Official trophy names, descriptions and grades: the official PlayStation 5 list, as listed by Exophase — <span class="source-url">exophase.com/game/grand-theft-auto-vi-psn/trophies</span></li>
-      <li>PSN progress counts (250 stunts, 42 Shooting Range challenges, 14 drone-race locations and the rest): PSNProfiles — <span class="source-url">psnprofiles.com/trophies/43531-grand-theft-auto-vi</span></li>
-      <li>Every guide above is written in our own words from the official descriptions; where a place is not pinned down by the description, the guide says so instead of inventing one.</li>
-      <li>This is an unofficial fan guide. Not affiliated with Rockstar Games, Take-Two Interactive or PlayStation. No official artwork or logos are used.</li>
-      <li>The app works fully offline: it loads only its own files and makes no network request while running.</li>
-    </ul>
-  </section>
-</main>
-
+<nav class="tabs" id="tabs">
+  <a href="?view=checklist" data-view="checklist">Checklist</a>
+  <a href="?view=roadmap" data-view="roadmap">Roadmap</a>
+  <a href="?view=missable" data-view="missable">Missable</a>
+  <a href="?view=guide" data-view="guide">Guide</a>
+</nav>
+<section class="controls" id="controls">
+  <div class="filters" id="kindFilters">
+    <button data-kind="all" class="on">All</button>
+    <button data-kind="story">Story</button>
+    <button data-kind="missable">Missable</button>
+    <button data-kind="collectible">Collectibles</button>
+    <button data-kind="activity">Activities</button>
+    <button data-kind="challenge">Challenges</button>
+    <button data-kind="online">Online</button>
+  </div>
+  <div class="tools">
+    <input id="search" type="search" placeholder="Search trophies…" aria-label="Search trophies">
+    <label class="spoiler"><input id="spoiler" type="checkbox"> Spoiler-free story</label>
+    <button id="exportBtn" type="button">Export progress</button>
+    <button id="importBtn" type="button">Import progress</button>
+    <input id="importFile" type="file" accept="application/json" hidden>
+  </div>
+</section>
+<main id="view"></main>
 <footer>
-  <p>Leonida Legend — an offline GTA 6 trophy guide &amp; tracker. 55 trophies, built from the official list.</p>
+  <p>Sources: the official trophy names, descriptions and grades as listed by Exophase and PSNProfiles; every guide names its source beside it. This is an unofficial fan guide, not affiliated with Rockstar Games, and it uses no Rockstar artwork or logos.</p>
+  <p>Progress is saved in this browser only (localStorage). Export it to a file to keep it safe.</p>
 </footer>
-
-<script src="app.js"></script>
 </body>
 </html>
